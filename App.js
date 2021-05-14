@@ -6,80 +6,37 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
-  View,
+  View, Text, TouchableOpacity
 } from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
+import Dialog from './src/components/Dialog';
+import { MainContext, MainProvider } from './src/provider/MainProvider';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const [isDialog, setDialog] = useState(false);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Hi.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+    // <MainProvider>
+    <SafeAreaView style={styles.container}>
+      <TouchableOpacity onPress={() => setDialog(true)}>
+        <Text style={{ fontSize: 20, letterSpacing: 3 }}>Are you sure?</Text>
+      </TouchableOpacity>
+      {isDialog && <Dialog isShow={true} />}
     </SafeAreaView>
+    // </MainProvider>
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+  container: {
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  }
 });
 
 export default App;

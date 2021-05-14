@@ -1,0 +1,14 @@
+com/confirm/MainApplication.java
+ com.confirm.MainApplication
+ com.confirm.MainApplication$1
+com/confirm/ReactNativeFlipper.java
+ com.confirm.ReactNativeFlipper
+ com.confirm.ReactNativeFlipper$1
+ com.confirm.ReactNativeFlipper$2
+ com.confirm.ReactNativeFlipper$2$1
+com/confirm/BuildConfig.java
+ com.confirm.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/confirm/MainActivity.java
+ com.confirm.MainActivity
