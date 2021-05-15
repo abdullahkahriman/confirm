@@ -1,41 +1,46 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  View, Text, TouchableOpacity
+  Text, TouchableOpacity, Modal
 } from 'react-native';
 import Dialog from './src/components/Dialog';
-import { MainContext, MainProvider } from './src/provider/MainProvider';
 
 const App = () => {
   const [isDialog, setDialog] = useState(false);
 
   return (
-    // <MainProvider>
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity onPress={() => setDialog(true)}>
+      <TouchableOpacity style={styles.btn} onPress={() => setDialog(true)}>
         <Text style={{ fontSize: 20, letterSpacing: 3 }}>Are you sure?</Text>
       </TouchableOpacity>
-      {isDialog && <Dialog isShow={true} />}
+
+
+      {/* Modal */}
+      <Modal animationType="slide"
+        transparent={true}
+        visible={isDialog}
+        onRequestClose={() => close()}>
+        <Dialog changeVisible={setDialog} />
+      </Modal>
     </SafeAreaView>
-    // </MainProvider>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: '#eee',
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
+  },
+  btn: {
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderWidth: 1,
+    borderColor: '#333'
   }
 });
 
