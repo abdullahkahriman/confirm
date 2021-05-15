@@ -1,63 +1,43 @@
-import React, { Component, PureComponent } from 'react';
+import React, { } from 'react';
 import {
     StyleSheet,
-    View, Text, Dimensions, TouchableOpacity
+    View, Text, TouchableOpacity
 } from 'react-native';
 
-const width = Dimensions.get('screen').width;
-const height = Dimensions.get('screen').height;
+const Dialog = (props) => {
 
-class Dialog extends Component {
-    constructor(props) {
-        console.log("props");
-        super(props);
-
-        this.state = {
-            isShow: props.isShow
-        }
+    const close = () => {
+        props.changeVisible(false)
     }
 
-    render() {
-        const close = () => {
-            this.setState({ isShow: false });
-            console.log(this.state)
-        }
+    const ok = () => {
+        props.changeVisible(false);
+        alert("Success!");
+    }
 
-        const ok = () => {
-            this.setState({ isShow: false });
-            console.log(this.state)
-        }
-
-        return (
-            this.state.isShow && <View style={styles.wrapper}>
-                <View style={styles.container}>
-                    <Text style={[styles.textHeader, styles.color]}>Are you sure?</Text>
-                    <Text style={[styles.textContent, styles.color]}>
-                        Do you approve your transaction?
+    return (
+        <View style={styles.wrapper} >
+            <View style={styles.container}>
+                <Text style={[styles.textHeader, styles.color]}>Are you sure?</Text>
+                <Text style={[styles.textContent, styles.color]}>
+                    Do you approve your transaction?
                 </Text>
-                    <View style={styles.btnContainer}>
-                        <TouchableOpacity onPress={() => close()} style={[styles.btn, styles.btnClose, { marginRight: 15 }]}>
-                            <Text style={[styles.color, styles.btnText]}>close</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => ok()} style={styles.btn}>
-                            <Text style={[styles.color, styles.btnText]}>yes</Text>
-                        </TouchableOpacity>
-                    </View>
+                <View style={styles.btnContainer}>
+                    <TouchableOpacity onPress={() => close()} style={[styles.btn, styles.btnClose, { marginRight: 15 }]}>
+                        <Text style={[styles.color, styles.btnText]}>close</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => ok()} style={styles.btn}>
+                        <Text style={[styles.color, styles.btnText]}>yes</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
-        );
-    }
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
     wrapper: {
         backgroundColor: 'rgba(0,0,0,0.9)',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        height: height,
-        width: width,
-        zIndex: 9999,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
